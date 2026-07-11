@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookiswater | 웹사이트 템플릿</title>
+    <!-- Pretendard 폰트 (깔끔하고 모던한 느낌) -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        :root {
+            /* 핵심 컬러 정의 */
+            --primary-blue: #0F172A; /* 깊고 묵직한 파란색 (네이비 톤) */
+            --accent-blue: #2563EB; /* 밝은 파란색 (포인트) */
+            --accent-orange: #FF6B00; /* 리틱 느낌의 강렬한 주황색 */
+            --bg-white: #FFFFFF; /* 흰색 배경 */
+            --bg-light: #F8FAFC; /* 섹션 구분을 위한 아주 밝은 회색/푸른빛 */
+            --text-dark: #1E293B; /* 텍스트용 어두운 색 */
+            --text-light: #64748B; /* 부가 설명용 회색 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 1. Header (상단 네비게이션) */
+        header {
+            background-color: var(--bg-white);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #E2E8F0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent-orange);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav ul li a {
+            font-weight: 600;
+            color: var(--primary-blue);
+            font-size: 1.05rem;
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* 2. Hero Section (메인 배너) */
+        .hero {
+            background-color: var(--primary-blue);
+            color: var(--bg-white);
+            padding: 10rem 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 주황색 포인트 디자인 요소 */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background-color: var(--accent-orange);
+            border-radius: 50%;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: var(--accent-blue);
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: var(--accent-orange);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #94A3B8;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            word-break: keep-all;
+        }
+
+        .btn {
+            background-color: var(--accent-orange);
+            color: var(--bg-white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 14px rgba(255, 107, 0, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background-color: #E65A00;
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.6);
+        }
+
+        /* 3. 공통 섹션 레이아웃 */
+        section {
+            padding: 6rem 5%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-title span {
+            color: var(--accent-orange);
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 4. 카드 디자인 (영상 없이도 입체감을 주는 디자인) */
+        .card {
+            background-color: var(--bg-white);
+            border-radius: 0; /* 리틱 스타일의 각진 모던함 */
+            padding: 2.5rem;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--accent-blue);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--accent-orange);
+        }
+
+        .card-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .card:hover .card-tag {
+            color: var(--accent-orange);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* 배경색 교차 적용 */
+        #writings { background-color: var(--bg-white); }
+        #projects { background-color: var(--bg-light); }
+        #gaming { background-color: var(--bg-white); }
+
+        /* 5. Footer */
+        footer {
+            background-color: var(--primary-blue);
+            color: white;
+            text-align: center;
+            padding: 3rem 5%;
+            font-size: 0.95rem;
+            border-top: 4px solid var(--accent-orange);
+        }
+        
+        .footer-logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        /* 모바일 반응형 처리 */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav ul { display: none; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 상단 네비게이션바 -->
+    <header>
+        <div class="logo">Bookis<span>water</span></div>
+        <nav>
+            <ul>
+                <li><a href="#writings">글</a></li>
+                <li><a href="#projects">프로젝트</a></li>
+                <li><a href="#gaming">게임관련</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 메인 배너 영역 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>본질에 집중하는 <span>웹 공간</span></h1>
+            <p>불필요한 영상과 애니메이션은 덜어내고, 직관적인 텍스트와 정제된 디자인으로 가치를 전달합니다.</p>
+            <a href="#writings" class="btn">콘텐츠 둘러보기</a>
+        </div>
+    </section>
+
+    <!-- 1. 글 섹션 -->
+    <section id="writings">
+        <h2 class="section-title"><span>01.</span> 글</h2>
+        <div class="grid">
+            <div class="card">
+                <span class="card-tag">Programming</span>
+                <h3>C 언어 학습 및 과제 회고록</h3>
+                <p>C 언어 프로그래밍 기초부터 메모리 관리, 포인터 개념까지 학습하며 겪은 시행착오와 해결 과정을 기록합니다.</p>
+            </div>
+            <div class="card">
+                <span class="card-tag">Study</span>
+                <h3>Python 데이터 분석의 기초</h3>
+                <p>Python을 활용한 데이터 처리와 알고리즘 트레이닝 스크립트 작성 방법에 대해 다룹니다.</p>
+            </div>
+            <div class="card">
+                <span class="card-tag">Life</span>
+                <h3>대학 생활과 보안 동아리</h3>
+                <p>컴퓨터공학부 입학과 보안 동아리 SecurityFACT 지원 등 첫 학기의 도전과 경험들을 정리한 에세이입니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. 프로젝트 섹션 -->
+    <section id="projects">
+        <h2 class="section-title"><span>02.</span> 프로젝트</h2>
+        <div class="grid">
+            <div class="card">
+                <span class="card-tag">Automation</span>
+                <h3>magic_bot 개발</h3>
+                <p>모바일 게임의 반복 작업을 효율적으로 처리하기 위해 기획 및 개발한 맞춤형 자동화 프로그램입니다.</p>
+            </div>
+            <div class="card">
+                <span class="card-tag">Hardware</span>
+                <h3>데스크 셋업 최적화</h3>
+                <p>기계식 키보드 커스텀, 아크릴 팜레스트, 게이밍 모니터 등 최적의 작업 효율을 위한 하드웨어 구성 프로젝트입니다.</p>
+            </div>
+            <div class="card">
+                <span class="card-tag">Design</span>
+                <h3>대학 굿즈 공모전 기획</h3>
+                <p>건국대학교의 아이덴티티를 살린 굿즈의 시각적 컨셉, 상세 사양 및 디자인을 기획한 프로젝트입니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 게임관련 섹션 -->
+    <section id="gaming">
+        <h2 class="section-title"><span>03.</span> 게임관련</h2>
+        <div class="grid">
+            <div class="card">
+                <span class="card-tag">Esports</span>
+                <h3>LoL Park 직관 및 팀 분석</h3>
+                <p>리그 오브 레전드 현장 관람 후기와 주요 팀 간의 라이벌리, 게임 메타에 대한 심도 있는 분석입니다.</p>
+            </div>
+            <div class="card">
+                <span class="card-tag">Strategy</span>
+                <h3>대학 체스 동아리와 Lichess</h3>
+                <p>체스 동아리의 운영 방안 기획과 매일 진행하는 Lichess 매치 분석 및 오프닝 전략 가이드입니다.</p>
+            </div>
+            <div class="card">
+                <span class="card-tag">Board Game</span>
+                <h3>Board Game Arena 리뷰</h3>
+                <p>온라인 보드게임 플랫폼 BGA에서의 플레이 기록과 친구들과 함께하기 좋은 전략 보드게임들을 소개합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="footer-logo">Bookiswater</div>
+        <p>&copy; 2026 Lee Jun-woo. All rights reserved. Designed for Github Pages.</p>
+    </footer>
+
+</body>
+</html>
